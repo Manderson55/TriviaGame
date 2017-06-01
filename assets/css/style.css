@@ -1,0 +1,46 @@
+
+
+body {
+	background: url("../images/crayons_bg.jpg") no-repeat fixed center;
+
+}
+
+h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+p  {
+	font-size: 20px;
+   font-family: sans-serif;
+   text-align: center;
+}
+
+
+
+.blue{color: blue;}
+.red{color:red;}
+.purple{color:purple;}
+.fuchsia{color:fuchsia;}
+.green{color:green;}
+.yellow{color: yellow;}
+.pink{color:pink;}
+
+#quizForm {
+	background-color: lightblue;
+	opacity: 0.8;
+
+}
+
+.ul {
+		text-align: center;
+}
+
+footer {
+	text-align: center;
+}
+
+
