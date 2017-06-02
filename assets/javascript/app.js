@@ -77,11 +77,7 @@ var questions = [
 		choice4:  "red",
 		answer:   "blue"
 	}
-
 ]
-
-
-
 
 function printQuestions() {
 	questions.forEach(function(question, index){
@@ -92,13 +88,14 @@ function printQuestions() {
 		console.log("choice 3: " + question.choice3);
 		console.log("choice 4: " + question.choice4);
 		console.log("answer: " + question.answer);
-		$("#questions").append(question.askQuestion);
-		$("#answer1").html(question.choice1);
-		console.log("choice 1 after printing question: " + question.choice1);
+		$	
 
-		$("#answer2").html(question.choice2);
-		$("#answer3").html(question.choice3);
-		$("#answer4").html(question.choice4);
+		$('#quizForm').append('<li>'+item.title+'</li>');
+		$("#questions").append(question.askQuestion);
+		$("#answer1").append(question.choice1);
+		$("#answer2").append(question.choice2);
+		$("#answer3").append(question.choice3);
+		$("#answer4").append(question.choice4);
 
 		if ((question.choice1) == (question.answer)){
 			console.log(question.choice1, question.answer);
