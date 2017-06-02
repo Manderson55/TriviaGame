@@ -1,25 +1,12 @@
 /*A Yale University study once found that the aroma of Crayola crayons is one of the most recognizable scents for adults. It ranked 18th just ahead of coffee and peanut butter.
-
 The largest crayon in the world, Big Blue, how much does it weigh? 1500 pounds, is 15 feet long and 16 inches in diameter.  It was made from 123,000 old blue crayons that were gathered from kids around the country.  It would color an entire football field.
-
 How many crayons does Crayola make a year, enough to circle the world six times? 3 billion crayons  
-
 How many crayons does the Crayola's Easton manufacturing plant produce per minute?  650 crayons 
-
 What was the realtionship between Binney and Smith? cousins.
-
 How many crayons The average child wears down by their 10th birthday? 720
 What color was the 100 billionth crayon made in 1996? blue ribbon
-
 when did Crayola changed the name of flesh to peach? 1962 
-
 */
-
-$(document).ready(function(){
-	printQuestions();
-
-});
-
 var questions = [
 	{
 		askQuestion: "Who came up with the name Crayola?",
@@ -76,49 +63,56 @@ var questions = [
 		choice3:  "blue",
 		choice4:  "red",
 		answer:   "blue"
-	}
-]
+	}]
 
-function printQuestions() {
-	questions.forEach(function(question, index){
-		console.log("Question " + question.askQuestion);
-		console.log("index " + index);
-		console.log("choice 1: " + question.choice1);
-		console.log("choice 2: " + question.choice2);
-		console.log("choice 3: " + question.choice3);
-		console.log("choice 4: " + question.choice4);
-		console.log("answer: " + question.answer);
-		$	
-
-		$('#quizForm').append('<li>'+item.title+'</li>');
-		$("#questions").append(question.askQuestion);
-		$("#answer1").append(question.choice1);
-		$("#answer2").append(question.choice2);
-		$("#answer3").append(question.choice3);
-		$("#answer4").append(question.choice4);
-
-		if ((question.choice1) == (question.answer)){
-			console.log(question.choice1, question.answer);
-//			$("#answer1.value") = "correct";  set the html value to correct
-		}
-		// if this works do all the others
+	var mainContent = $("<section>").attr({ // creating the html form dynamically for the answers
+	"class":"answers",
+	"id":"answers"
 	});
-}
+
+$(document).ready(function(){
+	
+	printQuestions();
 
 
+	function printQuestions() { //printing the question on the page and calling the function to print the answers
+		var choices = [];
+		questions.forEach(function(question, index){
+			choices.push(question);
+		});
+
+		var arr = [choices[0].choice1, choices[0].choice2, choices[0].choice3, choices[0].choice4];
+
+		console.log(choices[0]);
+		createInput(arr);
+		
+	}  // end function printQuestions
 
 
+	function createInput(arr) { //looping through the questions array and creating
+									  // the input labels for the answers dynamically
+		for(var i = 0; i < 4; i++){
+			var element = $("<input>").attr({
+				"type":"radio",
+				"class":"radio-inline",
+				"name":"optradio",
+				"value":arr[i]
+			});
+
+			var label = $("<label>").attr('id', 'answer' + i).html(arr[i]);
+
+			var breakBr = $("<br>"); 
+
+			mainContent.append(element, label, breakBr);
+		}
+	}
 
 
+	$("#quizForm").append(mainContent);
 
 
+//$("#button").on('click', submitAnswers);
+//create a function that will check for the correct answers after
+//the user clicks the button or if time ran out
 
-
-
-
-
-
-
-
-
-
+});  //end document on load

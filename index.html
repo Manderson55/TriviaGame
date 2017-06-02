@@ -1,70 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-	<meta charset="utf-8">
+    <meta charset="utf-8">
    <!-- Bootstrap Files -->
-   	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-   	<title>Trivia Game #1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trivia Game #1</title>
 <!-- Bootstrap reference  -->
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <!-- jquery library  -->
- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <!-- Bootstrap javascript complex functions -->
- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
- <!-- my files go here --> 	
-  	<link rel="stylesheet" href="assets/css/style.css">
-  	<script type="text/javascript" src = "assets/javascript/app.js"></script>
-
-
-
+ <!-- my files go here -->    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script type="text/javascript" src = "assets/javascript/app.js"></script>
 </head>
-
 <body>
-
 <div class = "container">
-	<div class = "jumbotron">
- 		<h1> Trivia Game </h1>
- 		<h2><span class="blue">C</span>
-			<span class="red">R</span>
-			<span class="purple">A</span>
-			<span class="fuchsia">Y</span>
-			<span class="green">O</span>
-			<span class="yellow">L</span>
-			<span class="pink">A</span> 
-			Style!					  
- 		</h2>
-		</h1>
-	</div>
-
-
-	<div class = "row">
-		 <div class="col-md-2">
-		 </div>
- 		 <div class="col-md-8" id = "quizForm" >
-
- 		 <p class="timeRemaining">Time Remaining: 30 Seconds</p>
-
- 		 <p class="questions" id="questions"></p>
- 		
-		 <p class="answers" id="answers">
-			<input type="radio" class="radio-inline" name="optradio" value="wrong"><label id="answer1"></label>
-			<input type="radio" class="radio-inline" name="optradio" value="wrong"><label id="answer2"></label> 
-			<input type="radio" class="radio-inline" name="optradio" value ="wrong" ><label id="answer3"></label>
-			<input type="radio" class="radio-inline" name="optradio" value="wrong"><label id="answer4"></label>
-		</p>
-			
- 		 </div>
-		 <div class="col-md-2">
-		 </div>
-	</div>
-
+    <div class = "jumbotron">
+        <h1> Trivia Game </h1>
+        <h2><span class="blue">C</span>
+            <span class="red">R</span>
+            <span class="purple">A</span>
+            <span class="fuchsia">Y</span>
+            <span class="green">O</span>
+            <span class="yellow">L</span>
+            <span class="pink">A</span> 
+            Style!                    
+        </h2>
+        </h1>
+    </div>
+    <div class = "row">
+         <div class="col-md-2">
+         </div>
+         <div class="col-md-8" id = "quizForm" >
+         <p class="timeRemaining">Time Remaining: 30 Seconds</p>
+         <p class="questions" id="questions"></p>
+ <!--        <button id="button" class="btn btn-default">Click</button> -->
+            
+         </div>
+         <div class="col-md-2">
+         </div>
+    </div>
 </div>
-
 <footer class="page-footer">
     <div class="footer-copyright">
         <div class="container">
@@ -72,7 +51,5 @@
         </div>
     </div>
 </footer>
-
-
 </body>
 </html>
