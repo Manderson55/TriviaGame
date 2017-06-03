@@ -65,8 +65,8 @@ var questionsAnswers = [
         answer:   "blue"
     }]
     var mainContent = $("<section>").attr({ // creating the html form dynamically for the answers
-        "class":"answers",
-        "id":"answers"
+        "class":"questionAnswers",
+        "id":"questionAnswers"
     });
 
 
@@ -76,13 +76,8 @@ $(document).ready(function(){
 
     for (var y = 0; y < questionsAnswers.length; y++) {
         printQuestions();
-
- //    on key up set timer to 1 minute       
- //       var button = $("<button>").attr("class", "btn btn-default").html("Submit");
- //      mainContent.append(button);
     }
- //   var val = $('input[name=optradio]:checked').val();
- //   console.log(val);
+ 
     function printQuestions() { 
         var choices = [];                                   //this array will contain all the data
         questionsAnswers.forEach(function(question, index){
@@ -95,39 +90,41 @@ $(document).ready(function(){
         var correctAnswer = choices[y].answer;
         console.log(correctAnswer);
         
-        var quizQuestion = $("<p>").html(choices[y].askQuestion);
+        var quizQuestion = $("<fieldset>").html(choices[y].askQuestion);
         mainContent.append(quizQuestion); //appending the question to the main content area
 
-        printAnswers(arrChoices, correctAnswer); //call the printANswers function to select and print the answers
+        printAnswers(arrChoices, correctAnswer); //call the printAnswers function to select and print the answers
  
     }  // end function printQuestions
 
     function printAnswers(arrChoices, correctAnswer) { //looping through the answer choices array and creating
                                       // the input labels for the answers dynamically
         for(var i = 0; i < 4; i++){
-            var element = $("<input>").attr({
+            var inputElement = $("<input>").attr({
                 "type":"radio",
                 "class":"radio-inline",
                 "name":"optradio",
+                "id": "radioButton"+[i],
                 "value":arrChoices[i]
             });
-
-        if (arrChoices[i] == correctAnswer) {  //setting the value of the label to right or wrong answer
-            var label = $("<label>").attr({
-                "id": "answer' + i",
-                "value": "rightAnswer"
-               }).html(arrChoices[i]);
+            if (arrChoices[i] == correctAnswer) {  //setting the value of the label to right or wrong answer
+              var inputLabel = $("<label>").attr({
+                   "id": "answer' + i",
+                    "value": "rightAnswer"
+                    }).html(arrChoices[i]);
  
-        } else {
-            var label = $("<label>").attr({
-                "id": "answer' + i",
-                "value": "wrongAnswer"
-              }).html(arrChoices[i]); 
+            } else {
+                var inputLabel = $("<label>").attr({
+                    "id": "answer' + i",
+                    "value": "wrongAnswer"
+                  }).html(arrChoices[i]); 
+            }
+ //         mainContent.append(inputElement, inputLabel, "</fieldset>"); // appending the input buttons and labels to the main content area
+            mainContent.append(inputElement, inputLabel); // appending the input buttons and labels to the main content area
         }
-        mainContent.append( element, label); // appending the input buttons and labels to the main content area
-        }
-    }
 
+    }
+ //   mainContent.append("</fieldset>"); 
     $("#quizForm").append(mainContent); //appending the main content area to the html window after loopin through array
 
     var button = $("<button>").attr("class", "btn btn-default").html("Submit Answers");
@@ -136,4 +133,26 @@ $(document).ready(function(){
    
 
 });  //end document on load
+
+$("input").click(function(){
+    alert("game started!");
+
+    var correctAnswers = 0;
+    var wrongAnswers = 0;
+    var counter = setInterval(timer, 1000);
+    var number = 100;
+    var val = $('input[name=optradio]:checked').val();
+    console.log(val);
+    timer();
+
+    function timer(){
+      number-- // decrements the timer by 1
+      $("#timer").html("<h2>" + "Time Remaining "+  number + " seconds" + "</h2>" );
+      if (number === 0){
+        alert("Times Up!")
+      }
+    }
+
+});
+
 
