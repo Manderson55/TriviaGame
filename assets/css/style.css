@@ -13,13 +13,11 @@ h2 {
 	text-align: center;
 }
 
-p  {
-	font-size: 20px;
+p {
+   font-size: 20px;
    font-family: sans-serif;
    text-align: center;
 }
-
-
 
 .blue{color: blue;}
 .red{color:red;}
@@ -32,11 +30,20 @@ p  {
 #quizForm {
 	background-color: lightblue;
 	opacity: 0.8;
+	text-align: center;
+}
+
+input.radio-inline {
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-top: 0;
+	margin-bottom: 0;
 
 }
 
-.ul {
-		text-align: center;
+#answer {
+	padding-right: 5px;
+	padding-left: 5px;
 }
 
 footer {
