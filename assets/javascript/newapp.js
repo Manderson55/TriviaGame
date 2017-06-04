@@ -120,6 +120,7 @@ $(document).ready(function(){
             $(this).removeAttr('checked');
             $('input[type="radio"]').attr('checked', false);
          })
+
     }
 
     function stopTimer(){
