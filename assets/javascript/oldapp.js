@@ -65,75 +65,116 @@ var questionsAnswers = [
         answer:   "blue"
     }]
     var mainContent = $("<section>").attr({ // creating the html form dynamically for the answers
-        "class":"answers",
-        "id":"answers"
+        "class":"questionAnswers",
+        "id":"questionAnswers"
     });
 
 
 
 $(document).ready(function(){
-    
+  
+$("#timer").html("<h2>" + "You have 20 seconds to finish this quiz. If you are done before the time is up, click the 'Submit Answers' button and the timer will stop and your questions will be submitted for verification. Good Luck!" + "</h2>" );
+var startButton = $("<button>").attr({"class": "btn btn-warning", //button to start the game and the timer
+                                       "id" : "startClock"
+                                    }).html("Start Playing!");
+$("#startButton").append(startButton);
 
-    for (var y = 0; y < questionsAnswers.length; y++) {
-        printQuestions();
 
- //    on key up set timer to 1 minute       
- //       var button = $("<button>").attr("class", "btn btn-default").html("Submit");
- //      mainContent.append(button);
+function printQuiz() {
+    for (var y = 0; y < questionsAnswers.length; y++) { //call the function to print the questions
+        printQuestions(y);
     }
- //   var val = $('input[name=optradio]:checked').val();
- //   console.log(val);
-    function printQuestions() { 
+   
+    $("#quizForm").append(mainContent); //appending the main content area to the html window after loopin through array
+
+
+    var stopButton = $("<button>").attr({"class": "btn btn-warning", //button to stop the game and the timer
+                                       "id" : "stopClock"
+                                    }).html("Submit Answers");
+
+    mainContent.append(stopButton);
+
+}
+
+    $("#startClock").click(function(){
+        console.log("game started!"); 
+        ("#startButton").hide;
+        ("#timer").hide;
+
+        printQuiz();
+        number = 11;
+        counter = setInterval(timer, 1000);
+        function timer(){
+            number--;
+            $("#timer").html("<h2>" + "Time Remaining "+  number + " seconds" + "</h2>" );
+            if (number === 0){
+                alert("Times Up!");
+                console.log("time is up");
+                stopTimer(); // calls the stop function
+            } 
+        }
+    }); //end startCLock
+
+
+    $("#stopClock").click(function(){
+        console.log("clicked stop button");
+        clearInterval(counter);
+     }); //end 
+
+   checkAnswers();
+
+    function stopTimer(){
+        clearInterval(counter);
+        console.log("inside stopTimer function");
+    }
+   
+    function checkAnswers(){
+        var userChoices =[];
+        for (var x=0; x < questionsAnswers.length; x++) {
+            userChoices = document.querySelector('input[name = "optradio[x]"]:checked').value;
+            console.log(userChoices);
+        }
+    }//end check asnwers
+
+    function printQuestions(y) { 
         var choices = [];                                   //this array will contain all the data
         questionsAnswers.forEach(function(question, index){
             choices.push(question);                         // pushing the data to the choices array
         });
-
         var arrChoices = [choices[y].choice1, choices[y].choice2, choices[y].choice3, choices[y].choice4];
         console.log(choices[y]);
-
         var correctAnswer = choices[y].answer;
-        console.log(correctAnswer);
-        
+        console.log(correctAnswer);       
+
         var quizQuestion = $("<p>").html(choices[y].askQuestion);
         mainContent.append(quizQuestion); //appending the question to the main content area
-
-        printAnswers(arrChoices, correctAnswer); //call the printANswers function to select and print the answers
- 
+        printAnswers(arrChoices, correctAnswer, y); //call the printAnswers function to select and print the answers
     }  // end function printQuestions
 
-    function printAnswers(arrChoices, correctAnswer) { //looping through the answer choices array and creating
+    function printAnswers(arrChoices, correctAnswer, y) { //looping through the answer choices array and creating
                                       // the input labels for the answers dynamically
         for(var i = 0; i < 4; i++){
-            var element = $("<input>").attr({
+            var inputElement = $("<input>").attr({
                 "type":"radio",
                 "class":"radio-inline",
-                "name":"optradio",
+                "name":"optradio"+ y,
                 "value":arrChoices[i]
             });
-
-        if (arrChoices[i] == correctAnswer) {  //setting the value of the label to right or wrong answer
-            var label = $("<label>").attr({
-                "id": "answer' + i",
-                "value": "rightAnswer"
-               }).html(arrChoices[i]);
+            if (arrChoices[i] == correctAnswer) {  //setting the value of the label to right or wrong answer
+              var inputLabel = $("<label>").attr({
+                   "id": "answer' + i",
+                    "value": "rightAnswer"
+                    }).html(arrChoices[i]);
  
-        } else {
-            var label = $("<label>").attr({
-                "id": "answer' + i",
-                "value": "wrongAnswer"
-              }).html(arrChoices[i]); 
+            } else {
+                var inputLabel = $("<label>").attr({
+                    "id": "answer' + i",
+                    "value": "wrongAnswer"
+                  }).html(arrChoices[i]); 
+            }
+            mainContent.append(inputElement, inputLabel); // appending the input buttons and labels to the main content area
         }
-        mainContent.append( element, label); // appending the input buttons and labels to the main content area
-        }
-    }
+    } //end printAnswers
 
-    $("#quizForm").append(mainContent); //appending the main content area to the html window after loopin through array
-
-    var button = $("<button>").attr("class", "btn btn-default").html("Submit Answers");
-    var breakBr = $("<br>");
-    mainContent.append(breakBr, button);
-   
 
 });  //end document on load
-

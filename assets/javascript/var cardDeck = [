@@ -1,7 +1,0 @@
-var cardDeck = [
-    {
-        heart:[],
-        spade :[],
-        club :[],
-        diamonds : []
-    }]
